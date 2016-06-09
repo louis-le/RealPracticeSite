@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
@@ -92,6 +91,3 @@ def register(request):
         "form": form,
     }
     return render(request, 'utilities/register.html', context)
-
-
-
