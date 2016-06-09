@@ -6,8 +6,13 @@ from .models import Utility
 from .forms import UserForm
 
 
+# Base web-page user gets directed to. Will be redirected to login if user isn't logged in.
 def index(request):
-    return HttpResponse("Nothing Here Yet.")
+    if not request.user.is_authenticated():
+        return render(request, 'utilities/login.html')
+    else:
+        utils = Utility.objects.filter(user=request.user)
+        return render(request, 'utilities/index.html', {'utils': utils})
 
 
 class UserFormView(View):
@@ -51,8 +56,8 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                utilities = Utility.objects.filter(user=request.user)
-                return render(request, 'utilities/index.html', {'utilities', utilities})
+                utils = Utility.objects.filter(user=request.user)
+                return render(request, 'utilities/index.html', {'utils': utils})
             else:
                 return render(request, 'utilities/login.html', {'error_message', 'Your account has been disabled'})
         else:
@@ -67,3 +72,26 @@ def logout_user(request):
         "form": form,
     }
     return render(request, 'utilities/login.html', context)
+
+
+def register(request):
+    form = UserForm(request.POST or None)
+    if form.is_valid():
+        user = form.save(commit=False)
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password']
+        user.set_password(password)
+        user.save()
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                utils = Utility.objects.filter(user=request.user)
+                return render(request, 'utilities/index.html', {'utils': utils})
+    context = {
+        "form": form,
+    }
+    return render(request, 'utilities/register.html', context)
+
+
+
