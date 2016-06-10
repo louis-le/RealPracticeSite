@@ -3,9 +3,11 @@
 {% block body %}
 <div class = "container-fluid">
     <h3>Welcome {{ user.username }}!</h3>
-
-    {% for utility in utils %}
-
-    {% endfor %}
+        {% for utility in utils %}
+            <div class = "row">
+                <a href = "#"><h4>{{ utility.name }}</h4></a>
+                <p>{{ utility.description }}</p>
+            </div>
+        {% endfor %}
 </div>
 {% endblock %}
