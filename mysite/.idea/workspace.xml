@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1965c72a-4fea-4fee-af8c-f22033be9677" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysite/settings.py" afterPath="$PROJECT_DIR$/mysite/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/models.py" afterPath="$PROJECT_DIR$/utilities/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/templates/utilities/base.html" afterPath="$PROJECT_DIR$/utilities/templates/utilities/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/templates/utilities/index.html" afterPath="$PROJECT_DIR$/utilities/templates/utilities/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/views.py" afterPath="$PROJECT_DIR$/utilities/views.py" />
     </list>
     <ignored path="mysite.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,8 +29,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/utilities/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+            <state relative-caret-position="108">
+              <caret line="6" column="50" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
               <folding>
                 <element signature="e#0#68#0" expanded="true" />
               </folding>
@@ -489,7 +483,14 @@
       <option name="project" value="LOCAL" />
       <updated>1465570577912</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fixed Bugs, Added Company and Modified User">
+      <created>1465583516218</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1465583516218</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -522,7 +523,8 @@
     <MESSAGE value="Added Login, need to fix website" />
     <MESSAGE value="Fixed Website!!! Now to implement hierarchy system!!!" />
     <MESSAGE value="Made the website pretty!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made the website pretty!" />
+    <MESSAGE value="Fixed Bugs, Added Company and Modified User" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Bugs, Added Company and Modified User" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -752,8 +754,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utilities/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+        <state relative-caret-position="108">
+          <caret line="6" column="50" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
           <folding>
             <element signature="e#0#68#0" expanded="true" />
           </folding>

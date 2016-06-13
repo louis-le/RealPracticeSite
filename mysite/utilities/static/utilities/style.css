@@ -1,0 +1,8 @@
+div.row {
+    border: 1px solid;
+    border-bottom: 0px;
+    padding-left: 30 px;
+    padding-top: 30 px;
+    padding-right: 30 px;
+    padding-down: 30 px;
+}
