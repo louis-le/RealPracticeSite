@@ -26,7 +26,7 @@ class Company(models.Model):
 
 
 class Employee(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     company = models.ForeignKey(Company, on_delete=models.CASCADE, default=None)
     utilities = models.ManyToManyField(Utility, blank=True)
     manager = models.BooleanField()
