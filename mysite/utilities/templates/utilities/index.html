@@ -1,9 +1,17 @@
 {% extends 'utilities/base.html' %}
 
+{% if user.employee.manager %}
+    <li>
+        <a href="{% url 'utilities:register' %}">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add User
+        </a>
+    </li>
+{% endif %}
+
 {% block body %}
 <div class = "container-fluid">
     <h3>Welcome {{ user.username }}!</h3>
-        {% for utility in utils %}
+        {% for utility in user.employee.utilities %}
             <div class = "row">
                 <a href = "#"><h4>{{ utility.name }}</h4></a>
                 <p>{{ utility.description }}</p>

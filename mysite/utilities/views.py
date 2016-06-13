@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
-from .models import Utility
 from .forms import UserForm
 
 
@@ -10,8 +9,7 @@ def index(request):
     if not request.user.is_authenticated():
         return render(request, 'utilities/login.html')
     else:
-        utils = Utility.objects.filter(user=request.user)
-        return render(request, 'utilities/index.html', {'utils': utils})
+        return render(request, 'utilities/index.html')
 
 
 class UserFormView(View):
@@ -55,8 +53,7 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                utils = Utility.objects.filter(user=request.user)
-                return render(request, 'utilities/index.html', {'utils': utils})
+                return render(request, 'utilities/index.html')
             else:
                 return render(request, 'utilities/login.html', {'error_message', 'Your account has been disabled'})
         else:
@@ -85,8 +82,7 @@ def register(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                utils = Utility.objects.filter(user=request.user)
-                return render(request, 'utilities/index.html', {'utils': utils})
+                return render(request, 'utilities/index.html')
     context = {
         "form": form,
     }
