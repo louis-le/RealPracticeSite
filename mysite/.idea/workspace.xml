@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1965c72a-4fea-4fee-af8c-f22033be9677" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/models.py" afterPath="$PROJECT_DIR$/utilities/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/templates/utilities/index.html" afterPath="$PROJECT_DIR$/utilities/templates/utilities/index.html" />
     </list>
     <ignored path="mysite.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -110,8 +107,8 @@
       <file leaf-file-name="base_visitor.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/utilities/templates/utilities/base_visitor.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+            <state relative-caret-position="378">
+              <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -780,8 +777,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utilities/templates/utilities/base_visitor.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        <state relative-caret-position="378">
+          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
           <folding />
         </state>
       </provider>
