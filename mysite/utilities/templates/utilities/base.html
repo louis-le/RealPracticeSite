@@ -25,6 +25,8 @@
 
                 <!-- Items -->
                 <div class="collapse navbar-collapse" id="topNavBar">
+                    {% block manager %}
+                    {% endblock %}
                     <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'utilities:index' %}">
                         <div class="form-group">
                             <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">

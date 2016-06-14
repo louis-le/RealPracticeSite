@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from django.views.generic import View
+from django.contrib.auth.models import User
 from .forms import UserForm
+from .models import Utility
 
 
 # Base web-page user gets directed to. Will be redirected to login if user isn't logged in.
@@ -12,39 +13,6 @@ def index(request):
         return render(request, 'utilities/index.html')
 
 
-class UserFormView(View):
-    form_class = UserForm
-    template_name = "utilities/registration_form.html"
-
-    # Gets form for user.
-    def get(self, request):
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form': form})
-
-    # Processes form data.
-    def post(self, request):
-        # Passes information from user to form.
-        form = self.form_class(request.POST)
-
-        if form.is_valid():
-            user = form.save(commit=False)
-
-            # Cleans up data.
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-
-            user.set_password(password)
-            user.save()
-
-            user = authenticate(username=username, password=password)
-
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return redirect('utilities:index')
-        return render(request, self.template_name, {'form': form})
-
-
 def login_user(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -53,7 +21,7 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return render(request, 'utilities/index.html')
+                return redirect('utilities:index')
             else:
                 return render(request, 'utilities/login.html', {'error_message', 'Your account has been disabled'})
         else:
@@ -78,12 +46,30 @@ def register(request):
         password = form.cleaned_data['password']
         user.set_password(password)
         user.save()
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return render(request, 'utilities/index.html')
     context = {
         "form": form,
     }
     return render(request, 'utilities/register.html', context)
+
+
+def users(request):
+    if not request.user.is_authenticated():
+        return render(request, 'utilities/login.html')
+    else:
+        return render(request, 'utilities/users.html',  {'users': User.objects.all(), })
+
+
+def user_detail(request, user_id):
+    if not request.user.is_authenticated():
+        return render(request, 'utilities/login.html')
+    else:
+        specified_user = get_object_or_404(User, pk=user_id)
+        return render(request, 'utilities/user_detail.html', {'specified_user': specified_user, })
+
+
+def utility_detail(request, utility_id):
+    if not request.user.is_authenticated():
+        return render(request, 'utilities/login.html')
+    else:
+        specified_utility = get_object_or_404(Utility, pk=utility_id)
+        return render(request, 'utilities/utility_detail.html', {'specified_utility': specified_utility, })
