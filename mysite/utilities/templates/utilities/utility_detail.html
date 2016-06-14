@@ -1,22 +1,5 @@
 {% extends 'utilities/base.html' %}
 
-{% block manager %}
-        <ul class="nav navbar-nav">
-            <li class="{% block utilities_active %}active{% endblock %}"><a href="{% url 'utilities:index' %}"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>&nbsp; Utilities</a></li>
-            <li class="{% block users_active %}{% endblock %}"><a href="{% url 'utilities:users' %}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Users</a></li>
-        </ul>
-{% endblock %}
-
-{% block register %}
-    {% if user.employee.manager %}
-        <li>
-            <a href="{% url 'utilities:register' %}">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add User
-            </a>
-        </li>
-    {% endif %}
-{% endblock %}
-
 {% block body %}
 <div class = "container-fluid">
     <h3>{{ specified_utility.name }}</h3>

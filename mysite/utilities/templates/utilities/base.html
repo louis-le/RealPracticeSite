@@ -26,6 +26,12 @@
                 <!-- Items -->
                 <div class="collapse navbar-collapse" id="topNavBar">
                     {% block manager %}
+                        {% if user.employee.manager %}
+                            <ul class="nav navbar-nav">
+                                <li class="{% block utilities_active %}active{% endblock %}"><a href="{% url 'utilities:index' %}"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>&nbsp; Utilities</a></li>
+                                <li class="{% block users_active %}{% endblock %}"><a href="{% url 'utilities:users' %}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Users</a></li>
+                            </ul>
+                        {% endif %}
                     {% endblock %}
                     <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'utilities:index' %}">
                         <div class="form-group">
@@ -35,6 +41,13 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         {% block register %}
+                            {% if user.employee.manager %}
+                                <li>
+                                    <a href="{% url 'utilities:register_user' %}">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add User
+                                    </a>
+                                </li>
+                            {% endif %}
                         {% endblock %}
                         <li>
                             <a href="{% url 'utilities:logout_user' %}">

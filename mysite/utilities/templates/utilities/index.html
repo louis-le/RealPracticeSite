@@ -1,30 +1,16 @@
 {% extends 'utilities/base.html' %}
 
-{% block manager %}
-        <ul class="nav navbar-nav">
-            <li class="{% block utilities_active %}active{% endblock %}"><a href="{% url 'utilities:index' %}"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>&nbsp; Utilities</a></li>
-            <li class="{% block users_active %}{% endblock %}"><a href="{% url 'utilities:users' %}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Users</a></li>
-        </ul>
-{% endblock %}
-
-{% block register %}
-    {% if user.employee.manager %}
-        <li>
-            <a href="{% url 'utilities:register' %}">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add User
-            </a>
-        </li>
-    {% endif %}
-{% endblock %}
+{% block utilities_active %}active{% endblock %}
+{% block users_active %}{% endblock %}
 
 {% block body %}
 <div class = "container-fluid">
     <h3>Welcome {{ user.username }}!</h3>
-        {% for utility in user.employee.utilities.all %}
-            <div class = "row">
-                <a href = "{% url 'utilities:utility_detail' utility.id %}"><h4>{{ utility.name }}</h4></a>
-                <p>{{ utility.description }}</p>
-            </div>
-        {% endfor %}
+    {% for utility in user.employee.utilities.all %}
+        <div class = "row">
+            <a href = "{% url 'utilities:utility_detail' utility.id %}"><h4>{{ utility.name }}</h4></a>
+            <p>{{ utility.description }}</p>
+        </div>
+    {% endfor %}
 </div>
 {% endblock %}

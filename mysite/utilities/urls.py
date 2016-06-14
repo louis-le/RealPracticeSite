@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^users/$', views.users, name='users'),
     url(r'^login/$', views.login_user, name='login_user'),
     url(r'^logout/$', views.logout_user, name='logout_user'),
-    url(r'^register/$', views.register, name='register'),
+    url(r'^register/$', views.register_user, name='register_user'),
+    url(r'^remove/(?P<user_id>[0-9]+)$', views.remove_user, name='remove_user'),
 ]

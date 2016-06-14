@@ -33,3 +33,6 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.user.get_username()
+
+    def set_company(self, company):
+        self.company = company
