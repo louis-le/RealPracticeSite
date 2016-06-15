@@ -9,7 +9,7 @@
             {% if specific_user.employee.company == user.employee.company %}
                 <div class = "row">
                     <div class="col-sm-8">
-                        <a href = "{% url 'utilities:user_detail' user.id %}"><h4>{{ specific_user.username }}</h4></a>
+                        <a href = "{% url 'utilities:user_detail' specific_user.id %}"><h4>{{ specific_user.username }}</h4></a>
                     </div>
                     <div class="col-sm-4">
                         <a href = "{% url 'utilities:remove_user' specific_user.id %}"><button type="button" class="btn btn-danger">Remove User</button></a>

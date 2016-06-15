@@ -2,6 +2,20 @@
 
 {% block body %}
 <div class = "container-fluid">
-    <h3>Welcome to user detail!</h3>
+    <h1>{{ specified_user.username }}</h1><br />
+    <div
+    <p><strong>Manger:</strong> {{ specified_user.employee.manager }}</p>
+    {% if not specified_user.employee.manager %}
+        <a href = "{% url 'utilities:make_manager' specific_user.id %}"><button type="button" class="btn btn-primary">Make Manager</button></a>
+    {% endif %}
+    <p><strong>Last Login:</strong> {{ specified_user.last_login }}</p>
+    <p><strong>Date Joined:</strong> {{ specified_user.date_joined }}</p>
+
+    <h3>Accessible Utilities</h3>
+    <ul>
+        {% for utility in user.employee.utilities.all %}
+            <li><a href = "{% url 'utilities:utility_detail' utility.id %}">{{ utility.name }}</a></li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}

@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1965c72a-4fea-4fee-af8c-f22033be9677" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/models.py" afterPath="$PROJECT_DIR$/utilities/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/static/utilities/style.css" afterPath="$PROJECT_DIR$/utilities/static/utilities/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/templates/utilities/base.html" afterPath="$PROJECT_DIR$/utilities/templates/utilities/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/templates/utilities/index.html" afterPath="$PROJECT_DIR$/utilities/templates/utilities/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/templates/utilities/user_detail.html" afterPath="$PROJECT_DIR$/utilities/templates/utilities/user_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/templates/utilities/users.html" afterPath="$PROJECT_DIR$/utilities/templates/utilities/users.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/templates/utilities/utility_detail.html" afterPath="$PROJECT_DIR$/utilities/templates/utilities/utility_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/urls.py" afterPath="$PROJECT_DIR$/utilities/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/views.py" afterPath="$PROJECT_DIR$/utilities/views.py" />
     </list>
     <ignored path="mysite.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -88,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/utilities/templates/utilities/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="45" column="76" selection-start-line="45" selection-start-column="76" selection-end-line="45" selection-end-column="76" />
+            <state relative-caret-position="229">
+              <caret line="33" column="35" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -101,21 +91,9 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utilities/templates/utilities/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="198">
+              <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/utilities/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="85" column="40" selection-start-line="85" selection-start-column="40" selection-end-line="85" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#64#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -123,9 +101,21 @@
       <file leaf-file-name="users.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utilities/templates/utilities/users.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+            <state relative-caret-position="180">
+              <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="42" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utilities/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="760">
+              <caret line="85" column="40" selection-start-line="85" selection-start-column="40" selection-end-line="85" selection-end-column="40" />
+              <folding>
+                <element signature="e#0#64#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -164,13 +154,13 @@
         <option value="$PROJECT_DIR$/utilities/admin.py" />
         <option value="$PROJECT_DIR$/utilities/templates/utilities/user_detail.html" />
         <option value="$PROJECT_DIR$/utilities/templates/utilities/utility_detail.html" />
-        <option value="$PROJECT_DIR$/utilities/templates/utilities/index.html" />
         <option value="$PROJECT_DIR$/utilities/models.py" />
         <option value="$PROJECT_DIR$/utilities/static/utilities/style.css" />
         <option value="$PROJECT_DIR$/utilities/templates/utilities/users.html" />
         <option value="$PROJECT_DIR$/utilities/templates/utilities/base.html" />
         <option value="$PROJECT_DIR$/utilities/views.py" />
         <option value="$PROJECT_DIR$/utilities/urls.py" />
+        <option value="$PROJECT_DIR$/utilities/templates/utilities/index.html" />
       </list>
     </option>
   </component>
@@ -223,6 +213,9 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="CompoundRunConfigurationType" factoryName="Compound Run Configuration">
+      <method />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -673,18 +666,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utilities/templates/utilities/index.html">
+    <entry file="file://$PROJECT_DIR$/utilities/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="760">
+          <caret line="85" column="40" selection-start-line="85" selection-start-column="40" selection-end-line="85" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utilities/templates/utilities/users.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utilities/templates/utilities/user_detail.html">
+    <entry file="file://$PROJECT_DIR$/utilities/templates/utilities/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="35" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
+        <state relative-caret-position="198">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -693,6 +696,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utilities/templates/utilities/user_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="35" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -707,27 +718,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utilities/templates/utilities/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="45" column="76" selection-start-line="45" selection-start-column="76" selection-end-line="45" selection-end-column="76" />
+        <state relative-caret-position="229">
+          <caret line="33" column="35" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utilities/templates/utilities/users.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utilities/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="85" column="40" selection-start-line="85" selection-start-column="40" selection-end-line="85" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

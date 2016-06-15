@@ -86,3 +86,13 @@ def remove_user(request, user_id):
         user = get_object_or_404(User, pk=user_id)
         user.delete()
         return render(request, 'utilities/users.html',  {'users': User.objects.all(), })
+
+
+def make_manager(request, specific_user_id):
+    if not request.user.is_authenticated():
+        return render(request, 'utilities/login.html')
+    else:
+        specified_user = get_object_or_404(User, pk=specific_user_id)
+        specified_user.employee.set_manager(True)
+        specified_user.save()
+        return render(request, 'utilities/user_detail.html', {'specified_user': specified_user, })

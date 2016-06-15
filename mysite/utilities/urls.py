@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^logout/$', views.logout_user, name='logout_user'),
     url(r'^register/$', views.register_user, name='register_user'),
     url(r'^remove/(?P<user_id>[0-9]+)$', views.remove_user, name='remove_user'),
+    url(r'^manager/(?P<specific_user_id>[0-9]+)$', views.make_manager, name='make_manager'),
 ]

@@ -16,7 +16,7 @@ class Utility(models.Model):
 class Company(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
-    utilities = models.ManyToManyField(Utility, blank = True)
+    utilities = models.ManyToManyField(Utility, blank=True)
 
     def __str__(self):
         return self.name
@@ -36,3 +36,6 @@ class Employee(models.Model):
 
     def set_company(self, company):
         self.company = company
+
+    def set_manager(self, set_var):
+        self.manager = set_var
