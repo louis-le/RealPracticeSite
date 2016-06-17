@@ -1,21 +1,43 @@
 {% extends 'utilities/base.html' %}
 
-{% block body %}
-<div class = "container-fluid">
-    <h1>{{ specified_user.username }}</h1><br />
-    <div
-    <p><strong>Manger:</strong> {{ specified_user.employee.manager }}</p>
-    {% if not specified_user.employee.manager %}
-        <a href = "{% url 'utilities:make_manager' specific_user.id %}"><button type="button" class="btn btn-primary">Make Manager</button></a>
-    {% endif %}
-    <p><strong>Last Login:</strong> {{ specified_user.last_login }}</p>
-    <p><strong>Date Joined:</strong> {{ specified_user.date_joined }}</p>
+<!--Make navigation bar respective blocks active-->
+{% block utilities_active %}{% endblock %}
+{% block users_active %}{% endblock %}
+{% block register_active %}{% endblock %}
+{% block detail_active %}{% if user.id == specific_user.id %}active{% endif %}{% endblock %}
 
-    <h3>Accessible Utilities</h3>
-    <ul>
-        {% for utility in user.employee.utilities.all %}
-            <li><a href = "{% url 'utilities:utility_detail' utility.id %}">{{ utility.name }}</a></li>
-        {% endfor %}
-    </ul>
-</div>
+{% block body %}
+    <div class = "container-fluid">
+        <h1>{{ specified_user.username }}</h1><br />
+
+        <!--Last Login and Date Joined-->
+        <p><strong>Last Login:</strong> {{ specified_user.last_login }}</p>
+        <p><strong>Date Joined:</strong> {{ specified_user.date_joined }}</p>
+
+        <!--Manager Details-->
+        <p><strong>Manager:</strong> {{ specified_user.employee.manager }}</p>
+        {% if user.employee.manager %}
+            <a href = "{% url 'utilities:set_manager' specified_user.id %}">
+                {% if specific_user.employee.manager %}
+                    <button type="button" class="btn btn-danger">Demote</button>
+                {% else %}
+                    <button type="button" class="btn btn-primary">Promote</button>
+                {% endif %}
+            </a>
+        {% endif %}
+
+        <!--List of Utilities-->
+        <h3>Accessible Utilities:</h3>
+        {% if user.employee.manager %}
+            <a href = "{% url 'utilities:add_utility' specified_user.id %}"><button type="button" class="btn btn-primary">Add Utilities</button></a>
+        {% endif %}
+        <ul>
+            {% for utility in user.employee.utilities.all %}
+                <div class = "row">
+                    <li><a href = "{% url 'utilities:utility_detail' utility.id %}">{{ utility.name }}</a></li>
+                </div>
+            {% endfor %}
+        </ul>
+
+    </div>
 {% endblock %}

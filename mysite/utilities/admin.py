@@ -6,6 +6,7 @@ from .models import Utility, Company, Employee
 
 class EmployeeInline(admin.StackedInline):
     model = Employee
+    list_filter = ('utilities', 'company')
     filter_horizontal = ('utilities',)
 
 

@@ -1,7 +1,7 @@
 {% extends 'utilities/base.html' %}
 
 <!--Make navigation bar respective blocks active-->
-{% block utilities_active %}active{% endblock %}
+{% block utilities_active %}{% endblock %}
 {% block users_active %}{% endblock %}
 {% block register_active %}{% endblock %}
 {% block detail_active %}{% endblock %}
@@ -9,11 +9,14 @@
 
 {% block body %}
 <div class = "container-fluid">
-    <h3>Welcome {{ user.username }}!</h3>
-    {% for utility in user.employee.utilities.all %}
+    <h4>{{ specified_user.username }}</h4>
+    {% for utility in specified_user.employee.company.utilities.all %}
         <div class = "row">
             <div class="col-sm-8">
                     <a href = "{% url 'utilities:utility_detail' utility.id %}"><h4>{{ utility.name }}</h4></a>
+            </div>
+            <div class="col-sm-4">
+                    <a href = "{% url 'utilities:adding_util' specified_user.employee.id utility.id %}"><button type="button" class="btn btn-primary">Add</button></a>
             </div>
         </div>
     {% endfor %}

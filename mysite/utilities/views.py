@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import UserForm
+from .forms import UserForm, UpdateProfile
 from .models import Utility, Employee
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 
 
 # Base web-page user gets directed to. Will be redirected to login if user isn't logged in.
@@ -49,6 +51,8 @@ def register_user(request):
             password = form.cleaned_data['password']
             user.set_password(password)
             user.save()
+            user.employee = Employee()
+            user.employee.company = request.user.employee.company
             return render(request, 'utilities/index.html')
         context = {
             "form": form,
@@ -67,8 +71,15 @@ def user_detail(request, user_id):
     if not request.user.is_authenticated():
         return render(request, 'utilities/login.html')
     else:
+        form = UpdateProfile(request.POST or None)
         specified_user = get_object_or_404(User, pk=user_id)
-        return render(request, 'utilities/user_detail.html', {'specified_user': specified_user, })
+        if request.method == 'POST':
+            form = UpdateProfile(request.POST, instance=request.user)
+            form.actual_user = request.user
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect(reverse('update_profile_success'))
+        return render(request, 'utilities/user_detail.html', {'specified_user': specified_user, 'form': form})
 
 
 def utility_detail(request, utility_id):
@@ -88,11 +99,34 @@ def remove_user(request, user_id):
         return render(request, 'utilities/users.html',  {'users': User.objects.all(), })
 
 
-def make_manager(request, specific_user_id):
+def set_manager(request, user_id):
     if not request.user.is_authenticated():
         return render(request, 'utilities/login.html')
     else:
-        specified_user = get_object_or_404(User, pk=specific_user_id)
-        specified_user.employee.set_manager(True)
-        specified_user.save()
+        specified_user = get_object_or_404(User, pk=user_id)
+        specified_user.employee.set_manager()
+        specified_user.employee.save()
         return render(request, 'utilities/user_detail.html', {'specified_user': specified_user, })
+
+
+def add_utility(request, user_id):
+    if not request.user.is_authenticated():
+        return render(request, 'utilities/login.html')
+    elif request.user.employee.manager:
+        specified_user = get_object_or_404(User, pk=user_id)
+        return render(request, 'utilities/add_utility.html', {'specified_user': specified_user, })
+    else:
+        return render(request, 'utilities/index.html')
+
+
+def adding_util(request, employee_id, utility_id):
+    if not request.user.is_authenticated():
+        return render(request, 'utilities/login.html')
+    elif request.user.employee.manager:
+        specified_user = get_object_or_404(Employee, pk=employee_id)
+        utility = get_object_or_404(Utility, pk=utility_id)
+        specified_user.company.utilities.add(utility)
+        specified_user.save()
+        return render(request, 'utilities/add_utility.html', {'specified_user': specified_user, })
+    else:
+        return render(request, 'utilities/index.html')
