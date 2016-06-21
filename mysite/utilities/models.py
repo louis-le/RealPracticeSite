@@ -37,3 +37,6 @@ class Employee(models.Model):
 
     def set_manager(self):
         self.manager = not self.manager
+
+    def is_manager(self):
+        return self.manager

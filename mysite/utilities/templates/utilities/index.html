@@ -9,11 +9,21 @@
 
 {% block body %}
 <div class = "container-fluid">
-    <h3>Welcome {{ user.username }}!</h3>
-    {% for utility in user.employee.utilities.all %}
+    <div class = "row" id = "title">
+        <strong>
+            <div class="col-sm-12">Utility</div>
+        </strong>
+    </div>
+    {% for utility in utilities %}
+        <hr />
         <div class = "row">
-            <div class="col-sm-8">
-                    <a href = "{% url 'utilities:utility_detail' utility.id %}"><h4>{{ utility.name }}</h4></a>
+            <div class="col-sm-10">
+                <a href = "{% url 'utilities:utility_detail' utility.id %}">{{ utility.name }}</a>
+            </div>
+
+            <div class="col-sm-2">
+                <a href = "{{ specified_utility.link }}"><button type="button" class="btn btn-primary">Access Utility</button></a>&nbsp;
+                <a href = "{% url 'utilities:remove_utility' user.employee.id utility.id %}"><button type="button" class="btn btn-danger">Remove</button></a>
             </div>
         </div>
     {% endfor %}

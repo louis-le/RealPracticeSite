@@ -43,6 +43,11 @@
                     </form>
 
                     <ul class="nav navbar-nav navbar-right">
+                        <li class="{% block username_active %}{% endblock %}">
+                            <a href="{% url 'utilities:user_detail' user.id %}">
+                                <strong>Welcome {{ user.username }}!</strong>
+                            </a>
+                        </li>
                         <!--Registering users, only available to manager.-->
                         {% if user.employee.manager %}
                             <li class="{% block register_active %}{% endblock %}">

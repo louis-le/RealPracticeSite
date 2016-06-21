@@ -2,6 +2,8 @@
   <dictionary name="louisle">
     <words>
       <w>endfor</w>
+      <w>glyphicon</w>
+      <w>navbar</w>
     </words>
   </dictionary>
 </component>

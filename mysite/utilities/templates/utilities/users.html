@@ -6,19 +6,35 @@
 {% block detail_active %}{% endblock %}
 
 {% block body %}
-<div class = "container-fluid">
-    <h3>Welcome {{ user.username }}!</h3>
+    <div class = "container-fluid">
+        <div class = "row" id = "title">
+            <strong>
+                <div class="col-sm-6">Username</div>
+                <div class = "col-sm-2">Last Login</div>
+                <div class = "col-sm-2">Date Joined</div>
+            </strong>
+        </div>
         {% for specific_user in users %}
             {% if specific_user.employee.company == user.employee.company %}
+                <hr />
                 <div class = "row">
-                    <div class="col-sm-8">
+                    <div class="col-sm-6">
                         <a href = "{% url 'utilities:user_detail' specific_user.id %}"><h4>{{ specific_user.username }}</h4></a>
                     </div>
-                    <div class="col-sm-4">
+                    <div class = "col-sm-2">{{ specific_user.last_login }}</div>
+                    <div class = "col-sm-2">{{ specific_user.date_joined }}</div>
+                    <div class="col-sm-2">
+                        {% if specific_user.is_active %}
+                            <a href = "{% url 'utilities:disable_user' specific_user.id %}"><button type="button" class="btn btn-warning">Disable User</button></a>
+                        {% else %}
+                            <a href = "{% url 'utilities:enable_user' specific_user.id %}"><button type="button" class="btn btn-info">Enable User</button></a>
+                        {% endif %}
+                        &nbsp;
                         <a href = "{% url 'utilities:remove_user' specific_user.id %}"><button type="button" class="btn btn-danger">Remove User</button></a>
                     </div>
                 </div>
+
             {% endif %}
         {% endfor %}
-</div>
+    </div>
 {% endblock %}
