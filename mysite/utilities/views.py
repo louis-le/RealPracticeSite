@@ -65,7 +65,24 @@ def users(request):
     if not request.user.is_authenticated():
         return render(request, 'utilities/login.html')
     else:
-        return render(request, 'utilities/users.html',  {'users': User.objects.all(), })
+        employee = request.user.employee
+        user_sort = employee.users_sort
+        order_kywd = None
+        users = User.objects.filter(employee__company=request.user.employee.company)
+
+        a_user_sort = abs(user_sort)
+        if a_user_sort == employee.ALPHA_SORT:
+            order_kywd = 'username'
+        elif a_user_sort == employee.LOGIN_SORT:
+            order_kywd = 'last_login'
+        elif a_user_sort == employee.JOINED_SORT:
+            order_kywd = 'date_joined'
+
+        if user_sort < 0:
+            order_kywd = '-' + order_kywd
+
+        users.order_by(order_kywd)
+        return render(request, 'utilities/users.html',  {'users': users, })
 
 
 def user_detail(request, user_id):

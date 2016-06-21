@@ -17,3 +17,13 @@ div.list {
 #title {
     font-size: 20px;
 }
+
+.breadcrumb {
+     border-style: solid;
+     border-color: #C0C0C0;
+     border-width: 1px;
+     border-left: black;
+     border-right: black;
+     border-bottom: black;
+     border-radius: 0;
+}

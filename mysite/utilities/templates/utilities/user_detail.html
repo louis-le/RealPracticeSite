@@ -10,6 +10,13 @@
     {% block detail_active %}active{% endblock %}
 {% endif %}
 
+{% block breadcrumb %}
+    <ol class="breadcrumb top_border" style="margin-bottom: 5px;">
+      <li><a href="{% url 'utilities:users' %}">Users</a></li>
+      <li><a href="{% url 'utilities:user_detail' specified_user.id %}">{{ specified_user.username }}</a></li>
+    </ol>
+{% endblock %}
+
 {% block body %}
     <div class = "container-fluid">
         <div class = "row">
