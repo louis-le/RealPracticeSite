@@ -6,7 +6,11 @@ div.row {
     border-color: #a29f9e;
 }
 
-div.utils {
+div.list {
+    font-size: 18px;
+}
+
+.text {
     font-size: 15px;
 }
 

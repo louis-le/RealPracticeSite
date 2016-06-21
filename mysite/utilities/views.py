@@ -24,7 +24,7 @@ def login_user(request):
                 login(request, user)
                 return redirect('utilities:index')
             else:
-                return render(request, 'utilities/login.html', {'error_message', 'Your account has been disabled.'})
+                return render(request, 'utilities/login.html', {'error_message': 'Your account has been disabled.'})
         else:
             return render(request, 'utilities/login.html', {'error_message': 'Invalid login.'})
     return render(request, 'utilities/login.html')

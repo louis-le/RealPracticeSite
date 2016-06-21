@@ -1,5 +1,7 @@
 {% extends 'utilities/base.html' %}
 
+{% block title %}SAS Utilities{% endblock %}
+
 <!--Make navigation bar respective blocks active-->
 {% block utilities_active %}active{% endblock %}
 {% block users_active %}{% endblock %}
@@ -16,14 +18,14 @@
     </div>
     {% for utility in utilities %}
         <hr />
-        <div class = "row">
+        <div class = "row list">
             <div class="col-sm-10">
                 <a href = "{% url 'utilities:utility_detail' utility.id %}">{{ utility.name }}</a>
             </div>
 
             <div class="col-sm-2">
                 <a href = "{{ specified_utility.link }}"><button type="button" class="btn btn-primary">Access Utility</button></a>&nbsp;
-                <a href = "{% url 'utilities:remove_utility' user.employee.id utility.id %}"><button type="button" class="btn btn-danger">Remove</button></a>
+                <a href = "{% url 'utilities:remove_utility' user.employee.id utility.id %}"><button type="button" class="btn btn-sm btn-danger">Remove</button></a>
             </div>
         </div>
     {% endfor %}
