@@ -66,7 +66,7 @@ class Employee(models.Model):
     def is_manager(self):
         return self.manager
 
-    def get_order_kywd(self):
+    def get_user_order_kywd(self):
         a_user_sort = abs(self.users_sort)
         if a_user_sort == self.ALPHA_SORT:
             order_kywd = 'username'
@@ -76,6 +76,32 @@ class Employee(models.Model):
             order_kywd = 'date_joined'
 
         if self.users_sort < 0:
+            order_kywd = '-' + order_kywd
+
+        return order_kywd
+
+    def adjust_user_sort_order(self, num):
+        if abs(self.users_sort) == num:
+            self.users_sort *= -1
+
+        else:
+            self.users_sort = num
+
+        self.save()
+
+    def adjust_utility_sort_order(self, num):
+        if abs(self.utilities_sort) == num:
+            self.utilities_sort *= -1
+
+        else:
+            self.utilities_sort = num
+
+        self.save()
+
+    def get_utility_order_kywd(self):
+        order_kywd = 'name'
+
+        if self.utilities_sort < 0:
             order_kywd = '-' + order_kywd
 
         return order_kywd

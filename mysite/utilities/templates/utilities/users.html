@@ -17,7 +17,7 @@
     <div class = "container-fluid">
         <div class = "row" id = "title">
             <strong>
-                {% if not user.employee.utilities.count > 1 %}
+                {% if user.employee.utilities.count > 1 %}
                     <div class="col-sm-6"><a href = "{% url 'utilities:username_sort' %}">Username</a></div>
                     <div class = "col-sm-2"><a href = "{% url 'utilities:login_sort' %}">Last Login</a></div>
                     <div class = "col-sm-2"><a href = "{% url 'utilities:joined_sort' %}">Date Joined</a></div>

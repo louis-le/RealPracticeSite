@@ -8,11 +8,18 @@
 {% block register_active %}{% endblock %}
 {% block detail_active %}{% endblock %}
 
+{% block breadcrumb %}
+    <ol class="breadcrumb top_border" style="margin-bottom: 5px;">
+        <li><a href="{% url 'utilities:users' %}">Users</a></li>
+        <li><a href="{% url 'utilities:user_detail' specified_user.id %}">{{ specified_user.username }}</a></li>
+        <li><a href="{% url 'utilities:add_utility' specified_user.id %}">Add Utility</a></li>
+    </ol>
+{% endblock %}
 
 {% block body %}
 <div class = "container-fluid">
     <h4><strong>Add Utilities</strong></h4>
-    {% for utility in specified_user.employee.company.utilities.all %}
+    {% for utility in utilities %}
         <div class = "row">
             <div class="col-sm-10">
                 <a href = "{% url 'utilities:utility_detail' utility.id %}"><h4>{{ utility.name }}</h4></a>
