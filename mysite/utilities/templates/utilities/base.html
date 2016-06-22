@@ -45,7 +45,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="{% block username_active %}{% endblock %}">
                             <a href="{% url 'utilities:user_detail' user.id %}">
-                                <strong>Welcome {{ user.first_name }}!</strong>
+                                <strong>Welcome {{ user.username }}!</strong>
                             </a>
                         </li>
                         <!--Registering users, only available to manager.-->

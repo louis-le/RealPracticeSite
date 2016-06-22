@@ -181,3 +181,4 @@ def joined_sort(request):
 def utility_sort(request):
     request.user.employee.adjust_utility_sort_order(request.user.employee.ALPHA_SORT)
     return redirect('utilities:index')
+
