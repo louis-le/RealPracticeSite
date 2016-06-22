@@ -1,5 +1,17 @@
 {% extends 'utilities/base.html' %}
 
+{% block utilities_active %}{% endblock %}
+{% block users_active %}{% endblock %}
+{% block register_active %}{% endblock %}
+{% block detail_active %}{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb top_border" style="margin-bottom: 5px;">
+      <li><a href="{% url 'utilities:index' %}">Utilities</a></li>
+      <li><a href="{% url 'utilities:utility_detail' specified_utility.id %}">{{ specified_utility.name }}</a></li>
+    </ol>
+{% endblock %}
+
 {% block body %}
 <div class = "container-fluid">
     <div class = "row">

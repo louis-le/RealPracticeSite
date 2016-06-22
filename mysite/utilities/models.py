@@ -53,6 +53,7 @@ class Employee(models.Model):
         (JOINED_SORT, "Date Joined Sorted"),
         (JOINED_SORT_I, "Date Joined Sorted Inverted"),
     )
+
     utilities_sort = models.IntegerField(choices=utilities_choice_sort, default=ALPHA_SORT)
     users_sort = models.IntegerField(choices=users_choice_sort, default=ALPHA_SORT)
 
@@ -64,3 +65,17 @@ class Employee(models.Model):
 
     def is_manager(self):
         return self.manager
+
+    def get_order_kywd(self):
+        a_user_sort = abs(self.users_sort)
+        if a_user_sort == self.ALPHA_SORT:
+            order_kywd = 'username'
+        elif a_user_sort == self.LOGIN_SORT:
+            order_kywd = 'last_login'
+        elif a_user_sort == self.JOINED_SORT:
+            order_kywd = 'date_joined'
+
+        if self.users_sort < 0:
+            order_kywd = '-' + order_kywd
+
+        return order_kywd

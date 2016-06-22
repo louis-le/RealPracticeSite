@@ -46,15 +46,15 @@ def register_user(request):
         form = UserForm(request.POST or None)
         if form.is_valid() and request.user.employee.manager:
             user = form.save(commit=False)
-            username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user.set_password(password)
             user.save()
-            user.employee = Employee()
+            user.employee = Employee(user=user)
             user.employee.manager = False
             user.employee.company = request.user.employee.company
             user.employee.save()
-            return render(request, 'utilities/index.html')
+            utilities = request.user.employee.utilities.all
+            return render(request, 'utilities/index.html', {'utilities': utilities, })
         context = {
             "form": form,
         }
@@ -65,24 +65,9 @@ def users(request):
     if not request.user.is_authenticated():
         return render(request, 'utilities/login.html')
     else:
-        employee = request.user.employee
-        user_sort = employee.users_sort
-        order_kywd = None
-        users = User.objects.filter(employee__company=request.user.employee.company)
-
-        a_user_sort = abs(user_sort)
-        if a_user_sort == employee.ALPHA_SORT:
-            order_kywd = 'username'
-        elif a_user_sort == employee.LOGIN_SORT:
-            order_kywd = 'last_login'
-        elif a_user_sort == employee.JOINED_SORT:
-            order_kywd = 'date_joined'
-
-        if user_sort < 0:
-            order_kywd = '-' + order_kywd
-
-        users.order_by(order_kywd)
-        return render(request, 'utilities/users.html',  {'users': users, })
+        usrs = User.objects.filter(employee__company=request.user.employee.company)
+        usrs = usrs.order_by(request.user.employee.get_order_kywd())
+        return render(request, 'utilities/users.html',  {'users': usrs, })
 
 
 def user_detail(request, user_id):
@@ -107,7 +92,11 @@ def remove_user(request, user_id):
     else:
         user = get_object_or_404(User, pk=user_id)
         user.delete()
-        return render(request, 'utilities/users.html',  {'users': User.objects.all(), })
+
+        usrs = User.objects.filter(employee__company=request.user.employee.company)
+        usrs = usrs.order_by(request.user.employee.get_order_kywd())
+
+        return render(request, 'utilities/users.html',  {'users': usrs, })
 
 
 def disable_user(request, user_id):
@@ -117,7 +106,11 @@ def disable_user(request, user_id):
         user = get_object_or_404(User, pk=user_id)
         user.is_active = False
         user.save()
-        return render(request, 'utilities/users.html', {'users': User.objects.all(), })
+
+        usrs = User.objects.filter(employee__company=request.user.employee.company)
+        usrs = usrs.order_by(request.user.employee.get_order_kywd())
+
+        return render(request, 'utilities/users.html', {'users': usrs, })
 
 
 def enable_user(request, user_id):
@@ -127,7 +120,11 @@ def enable_user(request, user_id):
         user = get_object_or_404(User, pk=user_id)
         user.is_active = True
         user.save()
-        return render(request, 'utilities/users.html', {'users': User.objects.all(), })
+
+        usrs = User.objects.filter(employee__company=request.user.employee.company)
+        usrs = usrs.order_by(request.user.employee.get_order_kywd())
+
+        return render(request, 'utilities/users.html', {'users': usrs, })
 
 
 def set_manager(request, user_id):
@@ -137,7 +134,7 @@ def set_manager(request, user_id):
     elif request.user.employee.is_manager():
         specified_user.employee.set_manager()
         specified_user.employee.save()
-    return redirect('utilities:user_detail', user_id=specified_user.id )
+    return redirect('utilities:user_detail', user_id=specified_user.id)
 
 
 def add_utility(request, user_id):
@@ -147,7 +144,8 @@ def add_utility(request, user_id):
         specified_user = get_object_or_404(User, pk=user_id)
         return render(request, 'utilities/add_utility.html', {'specified_user': specified_user, })
     else:
-        return render(request, 'utilities/index.html')
+        utilities = request.user.employee.utilities.all
+        return render(request, 'utilities/index.html', {'utilities': utilities, })
 
 
 def adding_util(request, user_id, utility_id):
@@ -160,7 +158,8 @@ def adding_util(request, user_id, utility_id):
         specified_user.employee.save()
         return render(request, 'utilities/add_utility.html', {'specified_user': specified_user, })
     else:
-        return render(request, 'utilities/index.html')
+        utilities = request.user.employee.utilities.all
+        return render(request, 'utilities/index.html', {'utilities': utilities, })
 
 
 def remove_utility(request, user_id, utility_id):
@@ -171,4 +170,40 @@ def remove_utility(request, user_id, utility_id):
         utility = get_object_or_404(Utility, pk=utility_id)
         specified_user.employee.utilities.remove(utility)
         specified_user.employee.save()
-        return render(request, 'utilities/index.html')
+        utilities = request.user.employee.utilities.all
+        return render(request, 'utilities/index.html', {'utilities': utilities, })
+
+
+def username_sort(request):
+    if abs(request.user.employee.users_sort) == request.user.employee.ALPHA_SORT:
+        request.user.employee.users_sort *= -1
+
+    else:
+        request.user.employee.users_sort = request.user.employee.ALPHA_SORT
+
+    request.user.employee.save()
+    
+    return redirect('utilities:users')
+
+
+def login_sort(request):
+    if abs(request.user.employee.users_sort) == request.user.employee.LOGIN_SORT:
+        request.user.employee.users_sort *= -1
+
+    else:
+        request.user.employee.users_sort = request.user.employee.LOGIN_SORT
+
+    request.user.employee.save()
+
+    return redirect('utilities:users')
+
+
+def joined_sort(request):
+    if abs(request.user.employee.users_sort) == request.user.employee.JOINED_SORT:
+        request.user.employee.users_sort *= -1
+    else:
+        request.user.employee.users_sort = request.user.employee.JOINED_SORT
+
+    request.user.employee.save()
+
+    return redirect('utilities:users')

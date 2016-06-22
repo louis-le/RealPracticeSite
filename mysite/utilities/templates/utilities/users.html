@@ -17,9 +17,15 @@
     <div class = "container-fluid">
         <div class = "row" id = "title">
             <strong>
-                <div class="col-sm-6">Username</div>
-                <div class = "col-sm-2">Last Login</div>
-                <div class = "col-sm-2">Date Joined</div>
+                {% if not user.employee.utilities.count > 1 %}
+                    <div class="col-sm-6"><a href = "{% url 'utilities:username_sort' %}">Username</a></div>
+                    <div class = "col-sm-2"><a href = "{% url 'utilities:login_sort' %}">Last Login</a></div>
+                    <div class = "col-sm-2"><a href = "{% url 'utilities:joined_sort' %}">Date Joined</a></div>
+                {% else %}
+                    <div class="col-sm-6">Username</div>
+                    <div class = "col-sm-2">Last Login</div>
+                    <div class = "col-sm-2">Date Joined</div>
+                {% endif %}
             </strong>
         </div>
         {% for specific_user in users %}
