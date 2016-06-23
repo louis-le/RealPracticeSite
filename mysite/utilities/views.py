@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .forms import UserForm
+from django import forms
 from .models import Utility, Employee
 
 
@@ -47,8 +48,21 @@ def register_user(request):
         form = UserForm(request.POST or None)
         if form.is_valid() and request.user.employee.manager:
             user = form.save(commit=False)
-            password = form.cleaned_data['password']
-            user.set_password(password)
+            password1 = form.cleaned_data['password']
+            password2 = form.cleaned_data['confirm_password']
+            if not password2:
+                context = {
+                    "form": form,
+                    'error_message': "You must confirm your password",
+                }
+                return render(request, 'utilities/register.html', context)
+            if password1 != password2:
+                context = {
+                    "form": form,
+                    'error_message': "Your passwords do not match",
+                }
+                return render(request, 'utilities/register.html', context)
+            user.set_password(password1)
             user.save()
             user.employee = Employee(user=user)
             user.employee.manager = False

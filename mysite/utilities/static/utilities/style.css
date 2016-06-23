@@ -18,6 +18,10 @@ div.list {
     font-size: 20px;
 }
 
+a.header {
+    color: black;
+}
+
 .breadcrumb {
      border-style: solid;
      border-color: #C0C0C0;
@@ -28,22 +32,6 @@ div.list {
      border-radius: 0;
 }
 
- /* unvisited link */
-a:link {
-    color: red;
-}
-
-/* visited link */
-a:visited {
-    color: green;
-}
-
-/* mouse over link */
-a:hover {
-    color: hotpink;
-}
-
-/* selected link */
-a:active {
-    color: blue;
+.error {
+    font-color: red;
 }
