@@ -147,7 +147,7 @@ def adding_util(request, user_id, utility_id):
         utility = get_object_or_404(Utility, pk=utility_id)
         specified_user.employee.utilities.add(utility)
         specified_user.employee.save()
-        return render(request, 'utilities/add_utility.html', {'specified_user': specified_user, })
+        return redirect('utilities:add_utility', user_id=specified_user.id)
     else:
         redirect('utilities:index')
 

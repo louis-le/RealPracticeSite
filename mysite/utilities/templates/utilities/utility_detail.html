@@ -8,7 +8,7 @@
 {% block breadcrumb %}
     <ol class="breadcrumb top_border" style="margin-bottom: 5px;">
       <li><a href="{% url 'utilities:index' %}">Utilities</a></li>
-      <li><a href="{% url 'utilities:utility_detail' specified_utility.id %}">{{ specified_utility.name }}</a></li>
+      <li class = "active"><a href="{% url 'utilities:utility_detail' specified_utility.id %}">{{ specified_utility.name }}</a></li>
     </ol>
 {% endblock %}
 

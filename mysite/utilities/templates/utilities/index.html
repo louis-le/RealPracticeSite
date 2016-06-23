@@ -10,7 +10,7 @@
 
 {% block breadcrumb %}
     <ol class="breadcrumb" style="margin-bottom: 5px;">
-      <li><a href="{% url 'utilities:index' %}">Utilities</a></li>
+      <li class = "active"><a href="{% url 'utilities:index' %}">Utilities</a></li>
     </ol>
 {% endblock %}
 
@@ -30,7 +30,7 @@
 
             <div class="col-sm-2">
                 <a href = "{{ specified_utility.link }}"><button type="button" class="btn btn-primary">Access Utility</button></a>&nbsp;
-                <a href = "{% url 'utilities:remove_utility' user.employee.id utility.id %}"><button type="button" class="btn btn-sm btn-danger">Remove</button></a>
+                <a href = "{% url 'utilities:remove_utility' user.id utility.id %}"><button type="button" class="btn btn-sm btn-danger">Remove</button></a>
             </div>
         </div>
     {% endfor %}

@@ -12,7 +12,7 @@
     <ol class="breadcrumb top_border" style="margin-bottom: 5px;">
         <li><a href="{% url 'utilities:users' %}">Users</a></li>
         <li><a href="{% url 'utilities:user_detail' specified_user.id %}">{{ specified_user.username }}</a></li>
-        <li><a href="{% url 'utilities:add_utility' specified_user.id %}">Add Utility</a></li>
+        <li class = "active"><a href="{% url 'utilities:add_utility' specified_user.id %}">Add Utility</a></li>
     </ol>
 {% endblock %}
 
