@@ -18,32 +18,40 @@
         <div class = "row" id = "title">
             <strong>
                 {% if user.employee.utilities.count > 1 %}
-                    <div class="col-sm-6"><a class = "header" href = "{% url 'utilities:username_sort' %}">Username</a></div>
+                    <div class="col-sm-5"><a class = "header" href = "{% url 'utilities:username_sort' %}">Username</a></div>
                     <div class = "col-sm-2"><a class = "header" href = "{% url 'utilities:login_sort' %}">Last Login</a></div>
                     <div class = "col-sm-2"><a class = "header" href = "{% url 'utilities:joined_sort' %}">Date Joined</a></div>
                 {% else %}
-                    <div class="col-sm-6">Username</div>
+                    <div class="col-sm-5">Username</div>
                     <div class = "col-sm-2">Last Login</div>
                     <div class = "col-sm-2">Date Joined</div>
                 {% endif %}
             </strong>
         </div>
-        {% for specific_user in users %}
+        {% for specified_user in users %}
             <hr />
             <div class = "row list">
-                <div class="col-sm-6">
-                    <a href = "{% url 'utilities:user_detail' specific_user.id %}">{{ specific_user.username }}</a>
+                <div class="col-sm-5">
+                    <a href = "{% url 'utilities:user_detail' specified_user.id %}">{{ specified_user.username }}</a>
                 </div>
-                <div class = "col-sm-2">{{ specific_user.last_login }}</div>
-                <div class = "col-sm-2">{{ specific_user.date_joined }}</div>
-                <div class="col-sm-2">
-                    {% if specific_user.is_active %}
-                        <a href = "{% url 'utilities:disable_user' specific_user.id %}"><button type="button" class="btn btn-sm btn-warning">Disable User</button></a>
-                    {% else %}
-                        <a href = "{% url 'utilities:enable_user' specific_user.id %}"><button type="button" class="btn btn-sm btn-info">Enable User</button></a>
+                <div class = "col-sm-2">{{ specified_user.last_login }}</div>
+                <div class = "col-sm-2">{{ specified_user.date_joined }}</div>
+                <div class="col-sm-3">
+                    {% if user.employee.manager %}
+                        {% if specified_user.employee.manager %}
+                            <a href = "{% url 'utilities:set_manager' specified_user.id %}"><button type="button" class="btn btn-sm btn-danger">Demote</button></a>
+                        {% else %}
+                            <a href = "{% url 'utilities:set_manager' specified_user.id %}"><button type="button" class="btn btn-sm btn-success">Promote</button></a>
+                        {% endif %}
                     {% endif %}
                     &nbsp;
-                    <a href = "{% url 'utilities:remove_user' specific_user.id %}"><button type="button" class="btn btn-sm btn-danger">Remove User</button></a>
+                    {% if specified_user.is_active %}
+                        <a href = "{% url 'utilities:disable_user' specified_user.id %}"><button type="button" class="btn btn-sm btn-warning">Disable User</button></a>
+                    {% else %}
+                        <a href = "{% url 'utilities:enable_user' specified_user.id %}"><button type="button" class="btn btn-sm btn-info">Enable User</button></a>
+                    {% endif %}
+                    &nbsp;
+                    <a href = "{% url 'utilities:remove_user' specified_user.id %}"><button type="button" class="btn btn-sm btn-danger">Remove User</button></a>
                 </div>
             </div>
         {% endfor %}

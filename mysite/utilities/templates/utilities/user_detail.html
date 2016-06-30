@@ -11,10 +11,16 @@
 {% endif %}
 
 {% block breadcrumb %}
+    {% if user.employee.manager %}
     <ol class="breadcrumb top_border" style="margin-bottom: 5px;">
       <li><a href="{% url 'utilities:users' %}">Users</a></li>
       <li class = "active"><a href="{% url 'utilities:user_detail' specified_user.id %}">{{ specified_user.username }}</a></li>
     </ol>
+    {% else %}
+        <ol class="breadcrumb top_border" style="margin-bottom: 5px;">
+            <li class = "active"><a href="{% url 'utilities:user_detail' specified_user.id %}">{{ specified_user.username }}</a></li>
+        </ol>
+    {% endif %}
 {% endblock %}
 
 {% block body %}
@@ -31,6 +37,24 @@
         </div>
         <!--Last Login and Date Joined-->
         <div class = "text">
+            <div class = "row">
+                <div class="col-sm-12">
+                    <p><strong>First Name:</strong> {{ specified_user.first_name }}</p>
+                </div>
+            </div>
+            <br />
+            <div class = "row">
+                <div class="col-sm-12">
+                    <p><strong>Last Name:</strong> {{ specified_user.last_name }}</p>
+                </div>
+            </div>
+            <br />
+            <div class = "row">
+                <div class="col-sm-12">
+                    <p><strong>Email:</strong> {{ specified_user.email }}</p>
+                </div>
+            </div>
+            <br />
             <div class = "row">
                 <div class="col-sm-12">
                     <p><strong>Last Login:</strong> {{ specified_user.last_login }}</p>

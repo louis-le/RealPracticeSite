@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .forms import UserForm
-from django import forms
 from .models import Utility, Employee
 
 
@@ -44,7 +43,7 @@ def logout_user(request):
 def register_user(request):
     if not request.user.is_authenticated():
         return render(request, 'utilities/login.html')
-    else:
+    elif request.user.employee.manager:
         form = UserForm(request.POST or None)
         if form.is_valid() and request.user.employee.manager:
             user = form.save(commit=False)
@@ -73,6 +72,8 @@ def register_user(request):
             "form": form,
         }
         return render(request, 'utilities/register.html', context)
+    else:
+        return redirect('utilities:index')
 
 
 def users(request):
