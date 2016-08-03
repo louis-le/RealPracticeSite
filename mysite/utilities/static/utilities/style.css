@@ -35,3 +35,7 @@ a.header {
 .error {
     font-color: red;
 }
+
+.btn {
+    white-space: normal;
+}
